@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="welcome_message">স্বাগতম</string>
+    <string name="change_language">ভাষা পরিবর্তন করুন</string>
+
+    <string name="profile_name">নাম</string>
+    <string name="profile_email">ইমেইল</string>
+
+
+
+</resources>

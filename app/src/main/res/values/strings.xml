@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProjectIntern</string>
+
+    <string name="welcome_message">Welcome</string>
+    <string name="change_language">Change Language</string>
+
+
+    <string name="profile_name">Name</string>
+    <string name="profile_email">Email</string>
+</resources>
