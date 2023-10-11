@@ -7,4 +7,7 @@
 
     <string name="profile_name">Name</string>
     <string name="profile_email">Email</string>
+    <string name="hello">Hey There</string>
+
+
 </resources>
