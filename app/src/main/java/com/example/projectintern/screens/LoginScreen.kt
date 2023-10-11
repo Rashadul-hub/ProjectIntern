@@ -29,6 +29,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.projectintern.R
+import com.example.projectintern.composed.HeadingTextComponent
+import com.example.projectintern.composed.MyTextFieldComponent
 import com.example.projectintern.composed.NormalTextComponent
 import com.example.projectintern.model.updateAppLanguage
 import com.example.projectintern.utils.LanguageSelection
@@ -120,13 +122,21 @@ fun LoginScreen() {
      **/
 
 
+    Surface(
+        color = Color.White, modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .padding(28.dp)
+    ) {
 
+        Column(modifier=Modifier.fillMaxSize()) {
 
-    Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
+            NormalTextComponent(value = stringResource(id = R.string.hello))
+            HeadingTextComponent(value = stringResource(id = R.string.create_account))
 
-        NormalTextComponent(value = stringResource(id = R.string.hello))
+            MyTextFieldComponent(labelValue = stringResource(id = R.string.first_name))
 
-
+        }
 
     }
 
