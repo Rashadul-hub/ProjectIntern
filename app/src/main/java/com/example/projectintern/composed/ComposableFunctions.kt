@@ -2,6 +2,8 @@ package com.example.projectintern.composed
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -43,8 +45,6 @@ import com.example.projectintern.ui.theme.SignInColor
 import com.example.projectintern.ui.theme.SurfaceDark
 
 
-
-
 //SignInTitle
 @Composable
 fun SignInTitle(text: String) {
@@ -65,7 +65,43 @@ fun SignInTitle(text: String) {
 }
 
 
-
+//Resend Button
+@Composable
+fun ResendButton(
+    buttonText: String,
+    onClick: () -> Unit,
+) {
+    Box(
+        modifier = Modifier
+            .width(151.dp)
+            .height(40.dp)
+            .clip(
+                RoundedCornerShape(5.dp)
+            )
+            .border(
+                1.dp,
+                Color(0xFF000000),
+                RoundedCornerShape(5.dp)
+            )
+            .background(
+                Color(0xFFD9D9D9)
+            )
+            .clickable { onClick() } // Make it clickable
+    ) {
+        Text(
+            text = buttonText,
+            textAlign = TextAlign.Center,
+            fontSize = 10.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(12.dp)
+                .align(Alignment.Center),
+            color = Color(0xFF000000),
+            fontWeight = FontWeight(600),
+            fontFamily = FontFamily(Font(R.font.inter_semi_bold))
+        )
+    }
+}
 
 
 ///Send OTP Button
@@ -127,17 +163,9 @@ fun ThemeSwitch() {
 }
 
 
-
-
-
 @Preview
 @Composable
 fun ViewButton2() {
-    CustomOTPButton(buttonText = "shdjka" , onClick = {})
+    CustomOTPButton(buttonText = "shdjka", onClick = {})
 }
 
-@Preview
-@Composable
-fun ThemeSwitcherPreview() {
-    ThemeSwitch()
-}
