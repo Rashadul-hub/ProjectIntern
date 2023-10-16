@@ -13,9 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
@@ -30,9 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -59,26 +55,22 @@ fun LoginScreen() {
     Scaffold(
         topBar = {
             Surface(
-                modifier = Modifier.fillMaxWidth(),
-                elevation = 16.dp
+                modifier = Modifier.fillMaxWidth(), elevation = 16.dp
             ) {
-                CenterAlignedTopAppBar(
-                    navigationIcon = {
-                        IconButton(onClick = { }) {
-                            Icon(
-                                imageVector = Icons.Default.KeyboardArrowLeft,
-                                contentDescription = "Back Icon",
-                                Modifier.size(32.dp)
-                            )
-                        }
-                    },
-                    title = {
-                        SignInTitle(text = "Sign in")
+                CenterAlignedTopAppBar(navigationIcon = {
+                    IconButton(onClick = { }) {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowLeft,
+                            contentDescription = "Back Icon",
+                            Modifier.size(32.dp)
+                        )
                     }
-                )
+                }, title = {
+                    SignInTitle(text = "Sign in")
+                })
             }
         },
-    ) {values->
+    ) { values ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -91,14 +83,12 @@ fun LoginScreen() {
             //Body Section
             LoginContent()
 
-            }
-
-
         }
 
+
+    }
+
 }
-
-
 
 
 @Composable
@@ -109,8 +99,8 @@ fun LoginContent() {
             .padding(16.dp)
     ) {
 
-
         Spacer(modifier = Modifier.height(25.dp))
+
         //Logo Section
         Image(
             painter = painterResource(id = R.drawable.kotha_app_logo),
@@ -158,11 +148,17 @@ fun ExampleText() {
         modifier = Modifier
             .fillMaxWidth()
             .alpha(0.8f),
-        color = Color(red = 0.21568627655506134f, green = 0.27843138575553894f, blue = 0.30980393290519714f, alpha = 0.800000011920929f),
+        color = Color(
+            red = 0.21568627655506134f,
+            green = 0.27843138575553894f,
+            blue = 0.30980393290519714f,
+            alpha = 0.800000011920929f
+        ),
         fontWeight = FontWeight.SemiBold,
         fontStyle = FontStyle.Normal,
     )
 }
+
 
 @Composable
 fun PhoneNumberInput() {
@@ -174,22 +170,26 @@ fun PhoneNumberInput() {
             .padding(vertical = 4.dp)
             .border(width = 1.dp, color = Color(0xFF979797)),
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
+
+
         textStyle = TextStyle(
-            fontSize = 20.sp, // Increase font size
-            fontWeight = FontWeight.Normal, // Adjust font weight
-            color = Color.Black, // Adjust text color
-            textAlign = TextAlign.Center
+            fontSize = 24.sp,
+            fontWeight = FontWeight(600),
+            color = Color(0xFF000000),
+            textAlign = TextAlign.Center,
+            fontFamily = FontFamily(Font(R.font.inter_font))
         )
 
     )
 }
+
 
 @Composable
 fun SendOTPButton() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(16.dp), contentAlignment = Alignment.Center
     ) {
         CustomOTPButton(buttonText = "Send OTP", onClick = {})
     }
@@ -211,8 +211,6 @@ fun RegisterLink() {
         fontStyle = FontStyle.Normal,
     )
 }
-
-
 
 
 @Preview
