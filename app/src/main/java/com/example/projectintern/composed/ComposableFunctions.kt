@@ -2,14 +2,20 @@ package com.example.projectintern.composed
 
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -25,13 +31,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,45 +51,83 @@ import com.example.projectintern.R
 import com.example.projectintern.darkMode
 import com.example.projectintern.ui.theme.AppTheme
 import com.example.projectintern.ui.theme.ComponentShapes
+import com.example.projectintern.ui.theme.CustomButtonColor
+import com.example.projectintern.ui.theme.OnPrimaryLight
 import com.example.projectintern.ui.theme.PrimaryLight
 import com.example.projectintern.ui.theme.SecondaryContainerLight
 import com.example.projectintern.ui.theme.SurfaceDark
 
-@Composable
-fun TextHeadLine(text: String, color: Color) {
-    Text(
-        "$text",
-        style = MaterialTheme.typography.headlineSmall,
-        color = Color.White
-    )
 
+@Composable
+fun KothaAppLogo(modifier: Modifier) {
+    Image(
+        painter = painterResource(id = R.drawable.kotha_app_logo),
+        contentDescription = "image description",
+        contentScale = ContentScale.None
+    )
 }
 
+//SignInTitle
 @Composable
-fun ComposableButton() {
-    Button(
-        onClick = {},
-        colors = ButtonDefaults.buttonColors(
-            contentColor = Color.White,
-            containerColor = Color.Blue
+fun SignInTitle(text: String) {
+    Text(
+        text = "$text",
+        style = TextStyle(
+            fontSize = 17.sp,
+            fontFamily = FontFamily(Font(R.font.inter_font)),
+            fontWeight = FontWeight(700),
+            color = Color(0xFF37474F),
+            textAlign = TextAlign.Center,
         ),
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(AppTheme.dimens.mediumLarge),
-        shape = CircleShape
-    ) {
+            .width(55.dp)
+            .height(21.dp)
+    )
+}
+
+
+
+///Send OTP Button
+@Composable
+fun CustomOTPButton(
+    buttonText: String,
+    onClick: () -> Unit,
+) {
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.elevatedButtonColors(containerColor = Color.Transparent),
+        modifier = Modifier
+            .width(307.dp)
+            .height(55.dp)
+            .clip(
+                RoundedCornerShape(
+                    topStart = 6.dp,
+                    topEnd = 16.dp,
+                    bottomStart = 16.dp,
+                    bottomEnd = 16.dp
+                )
+            )
+            .background(CustomButtonColor),
+
+        ) {
         Text(
-            text = "Lets Go",
-            style = MaterialTheme.typography.bodyLarge,
-            fontWeight = FontWeight.Bold,
+            text = buttonText,
             textAlign = TextAlign.Center,
+            fontSize = 20.sp,
+            letterSpacing = (-0.3).sp,
             modifier = Modifier
-                .padding(AppTheme.dimens.medium)
+                .width(94.dp)
+                .height(24.dp),
+            color = OnPrimaryLight,
+            fontWeight = FontWeight(600),
+            fontFamily = FontFamily(Font(R.font.inter_font)),
         )
     }
 }
 
 
+
+///Switch Theme Mode
 @Composable
 fun ThemeSwitch() {
     Box(
@@ -130,42 +180,11 @@ fun HeadingTextComponent(value: String) {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MyTextFieldComponent(labelValue: String) {
-
-    val textValue = remember {
-        mutableStateOf("")
-    }
-
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(ComponentShapes.small),
-        label = { Text(text = labelValue) },
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = PrimaryLight,
-            focusedLabelColor = PrimaryLight,
-            cursorColor = PrimaryLight,
-            containerColor = SecondaryContainerLight
-        ),
-        keyboardOptions = KeyboardOptions.Default,
-        value = textValue.value,
-        onValueChange = {
-            textValue.value = it
-        },
-
-        leadingIcon = {
-            Icon(painter = painterResource(id = R.drawable.profile), contentDescription = "")
-        }
-    )
-}
-
 
 @Preview
 @Composable
-fun ViewButton() {
-    ComposableButton()
+fun ViewButton2() {
+    CustomOTPButton(buttonText = "shdjka" , onClick = {})
 }
 
 @Preview
