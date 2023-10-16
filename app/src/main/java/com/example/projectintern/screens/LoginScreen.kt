@@ -12,7 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
@@ -25,15 +26,17 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -45,6 +48,13 @@ import androidx.compose.ui.unit.sp
 import com.example.projectintern.R
 import com.example.projectintern.composed.CustomOTPButton
 import com.example.projectintern.composed.SignInTitle
+import com.example.projectintern.model.Dimensions
+import com.example.projectintern.model.WindowSize
+import com.example.projectintern.model.compactDimensions
+import com.example.projectintern.model.largeDimensions
+import com.example.projectintern.model.mediumDimensions
+import com.example.projectintern.model.rememberWindowSizeClass
+import com.example.projectintern.model.smallDimensions
 import com.example.projectintern.ui.theme.OnPrimaryLight
 
 
@@ -52,10 +62,23 @@ import com.example.projectintern.ui.theme.OnPrimaryLight
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen() {
+
+    val windowSize = rememberWindowSizeClass()
+    val dimensions = when (windowSize.width) {
+        is WindowSize.Small -> smallDimensions
+        is WindowSize.Compact -> compactDimensions
+        is WindowSize.Medium -> mediumDimensions
+        is WindowSize.Large -> largeDimensions
+    }
+
+    // Determine whether the device is in landscape orientation
+    val isLandscape = windowSize.width is WindowSize.Large
+
     Scaffold(
         topBar = {
             Surface(
-                modifier = Modifier.fillMaxWidth(), elevation = 16.dp
+                modifier = Modifier.fillMaxWidth(),
+                elevation = dimensions.small
             ) {
                 CenterAlignedTopAppBar(navigationIcon = {
                     IconButton(onClick = { }) {
@@ -71,58 +94,72 @@ fun LoginScreen() {
             }
         },
     ) { values ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(values)
-                .background(color = OnPrimaryLight) //White Color
+        // If in landscape mode, wrap the content in a scrollable LazyColumn
+        if (isLandscape) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                item {
+                    Box(
+                        modifier = Modifier
+                            .padding(values)
+                            .background(color = OnPrimaryLight)
+                    ) {
+                        // Body Section
+                        LoginContent(dimensions)
+                    }
+                }
+            }
+        } else{
+            // In portrait mode, we  use this existing layout
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(values)
+                    .background(color = OnPrimaryLight) // White Color
+            ) {
 
-
-        ) {
-
-            //Body Section
-            LoginContent()
-
+                // Body Section
+                LoginContent(dimensions)
+            }
         }
-
-
     }
-
 }
 
-
 @Composable
-fun LoginContent() {
+fun LoginContent(dimensions: Dimensions) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(dimensions.medium) // Adjust padding based on window size
     ) {
 
-        Spacer(modifier = Modifier.height(25.dp))
+        Spacer(modifier = Modifier.height(dimensions.small))
 
-        //Logo Section
+        // Logo Section
         Image(
             painter = painterResource(id = R.drawable.kotha_app_logo),
             contentDescription = "app logo",
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .width(40.23196.dp)
+                .fillMaxWidth()
                 .height(35.dp)
         )
 
-        Spacer(modifier = Modifier.height(25.dp))
+        Spacer(modifier = Modifier.height(dimensions.smallMedium))
         TitleSection()
-        Spacer(modifier = Modifier.height(7.dp))
+        Spacer(modifier = Modifier.height(dimensions.medium))
         ExampleText()
-        Spacer(modifier = Modifier.height(22.dp))
+        Spacer(modifier = Modifier.height(dimensions.medium))
         PhoneNumberInput()
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(dimensions.large))
         SendOTPButton()
-        Spacer(modifier = Modifier.height(46.dp))
+        Spacer(modifier = Modifier.height(dimensions.mediumLarge))
         RegisterLink()
     }
 }
+
+
 
 @Composable
 fun TitleSection() {
@@ -131,10 +168,11 @@ fun TitleSection() {
         textAlign = TextAlign.Center,
         fontSize = 16.sp,
         modifier = Modifier
-            .fillMaxWidth()
-            .height(19.dp),
+            .fillMaxWidth() // Take the full available width
+            .wrapContentHeight(), // Wrap the content for height
         fontWeight = FontWeight(700),
-        fontFamily = FontFamily(Font(R.font.inter_font))
+        color = Color(0xFF37474F),
+        fontFamily = FontFamily(Font(R.font.inter_bold))
     )
 }
 
@@ -144,27 +182,24 @@ fun ExampleText() {
         text = "Example: 01713048764",
         textAlign = TextAlign.Center,
         fontSize = 14.sp,
-        overflow = TextOverflow.Ellipsis,
         modifier = Modifier
-            .fillMaxWidth()
-            .alpha(0.8f),
-        color = Color(
-            red = 0.21568627655506134f,
-            green = 0.27843138575553894f,
-            blue = 0.30980393290519714f,
-            alpha = 0.800000011920929f
-        ),
-        fontWeight = FontWeight.SemiBold,
-        fontStyle = FontStyle.Normal,
+            .fillMaxWidth() //Take the full available width
+            .wrapContentHeight(),// Wrap the content for height
+        color = Color(0xCC37474F),
+        fontWeight = FontWeight(600),
+        fontFamily = FontFamily(Font(R.font.inter_semi_bold))
     )
 }
 
 
 @Composable
 fun PhoneNumberInput() {
+    var phoneNumber by remember {
+        mutableStateOf("")
+    }
     OutlinedTextField(
-        value = "01715011222",
-        onValueChange = { /* Handle value change here */ },
+        value = phoneNumber,
+        onValueChange = { phoneNumber= it },  // Update the mutable state with the new input
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
@@ -177,7 +212,7 @@ fun PhoneNumberInput() {
             fontWeight = FontWeight(600),
             color = Color(0xFF000000),
             textAlign = TextAlign.Center,
-            fontFamily = FontFamily(Font(R.font.inter_font))
+            fontFamily = FontFamily(Font(R.font.inter_semi_bold))
         )
 
     )
@@ -204,11 +239,11 @@ fun RegisterLink() {
         textDecoration = TextDecoration.Underline,
         overflow = TextOverflow.Ellipsis,
         modifier = Modifier
-            .fillMaxWidth()
-            .alpha(1f),
-        color = Color(0f, 0.5803921818733215f, 0.49803921580314636f, 1f),
-        fontWeight = FontWeight.Medium,
-        fontStyle = FontStyle.Normal,
+            .fillMaxWidth() // Take the full available width
+            .wrapContentHeight(), // Wrap the content for height
+        color = Color(0xFF00947F),
+        fontWeight = FontWeight(500),
+        fontFamily = FontFamily(Font(R.font.inter_medium))
     )
 }
 
@@ -219,10 +254,3 @@ fun Log() {
     LoginScreen()
 }
 
-
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun DefaultScreenView() {
-//    Body()
-//}
