@@ -2,7 +2,6 @@ package com.example.projectintern.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
@@ -48,14 +46,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.projectintern.R
 import com.example.projectintern.composed.CustomOTPButton
 import com.example.projectintern.composed.SignInTitle
-import com.example.projectintern.composed.ThemeSwitch
 import com.example.projectintern.model.Dimensions
 import com.example.projectintern.model.WindowSize
 import com.example.projectintern.model.compactDimensions
@@ -63,14 +59,14 @@ import com.example.projectintern.model.largeDimensions
 import com.example.projectintern.model.mediumDimensions
 import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.model.smallDimensions
-import com.example.projectintern.ui.theme.OnPrimaryLight
 
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
+
 
     val windowSize = rememberWindowSizeClass()
     val dimensions = when (windowSize.width) {
@@ -117,7 +113,7 @@ fun LoginScreen() {
 //                            .background(color = OnPrimaryLight)
                     ) {
                         // Body Section
-                        LoginContent(dimensions)
+                        LoginContent(dimensions,navController)
                     }
                 }
             }
@@ -131,14 +127,14 @@ fun LoginScreen() {
             ) {
 
                 // Body Section
-                LoginContent(dimensions)
+                LoginContent(dimensions,navController)
             }
         }
     }
 }
 
 @Composable
-fun LoginContent(dimensions: Dimensions) {
+fun LoginContent(dimensions: Dimensions, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -167,7 +163,7 @@ fun LoginContent(dimensions: Dimensions) {
         Spacer(modifier = Modifier.height(dimensions.medium))
         PhoneNumberInput()
         Spacer(modifier = Modifier.height(dimensions.mediumLarge))
-        SendOTPButton()
+        SendOTPButton(navController)
         Spacer(modifier = Modifier.height(dimensions.mediumLarge))
         RegisterLink()
     }
@@ -252,14 +248,16 @@ fun PhoneNumberInput() {
 
 
 @Composable
-fun SendOTPButton() {
+fun SendOTPButton(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
-        CustomOTPButton(buttonText = "Send OTP", onClick = {})
+        CustomOTPButton(buttonText = "Send OTP") {
+            navController.navigate("otp") // Navigate to the OTP screen
+        }
     }
 
 }
@@ -281,9 +279,3 @@ fun RegisterLink() {
     )
 }
 
-
-@Preview
-@Composable
-fun Log() {
-    LoginScreen()
-}
