@@ -26,7 +26,6 @@ import com.example.projectintern.utils.Orientation
 @Composable
 fun ProjectApp() {
 
-
     val window = rememberWindowSizeClass()
     ProjectInternTheme(window, darkTheme = darkMode) {
         Surface(modifier = Modifier.fillMaxSize()) {

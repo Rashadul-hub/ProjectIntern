@@ -2,6 +2,7 @@ package com.example.projectintern.composed
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,8 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +39,7 @@ import com.example.projectintern.R
 import com.example.projectintern.darkMode
 import com.example.projectintern.ui.theme.CustomButtonColor
 import com.example.projectintern.ui.theme.OnPrimaryLight
+import com.example.projectintern.ui.theme.SignInColor
 import com.example.projectintern.ui.theme.SurfaceDark
 
 
@@ -50,7 +54,7 @@ fun SignInTitle(text: String) {
             fontSize = 17.sp,
             fontFamily = FontFamily(Font(R.font.inter_bold)),
             fontWeight = FontWeight(700),
-            color = Color(0xFF37474F),
+            color = SignInColor, //Color
             textAlign = TextAlign.Center,
         ),
         modifier = Modifier
@@ -59,6 +63,8 @@ fun SignInTitle(text: String) {
 
     )
 }
+
+
 
 
 
@@ -112,9 +118,8 @@ fun ThemeSwitch() {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "DarkMode", fontSize = 40.sp)
+            Text(text = "DarkMode", fontSize = 30.sp)
             Spacer(modifier = Modifier.padding(16.dp))
-
             Switch(checked = darkMode, onCheckedChange = { darkMode = !darkMode })
         }
 
@@ -122,37 +127,7 @@ fun ThemeSwitch() {
 }
 
 
-@Composable
-fun NormalTextComponent(value: String) {
-    Text(
-        text = value,
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = 40.dp),
-        style = TextStyle(
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Normal,
-            fontStyle = FontStyle.Normal
-        ),
-        color = SurfaceDark,
-        textAlign = TextAlign.Center
-    )
-}
 
-@Composable
-fun HeadingTextComponent(value: String) {
-    Text(
-        text = value,
-        modifier = Modifier.fillMaxWidth(),
-        style = TextStyle(
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
-            fontStyle = FontStyle.Normal
-        ),
-        color = SurfaceDark,
-        textAlign = TextAlign.Center
-    )
-}
 
 
 @Preview

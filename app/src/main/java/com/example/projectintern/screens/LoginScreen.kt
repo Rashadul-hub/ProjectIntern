@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.sp
 import com.example.projectintern.R
 import com.example.projectintern.composed.CustomOTPButton
 import com.example.projectintern.composed.SignInTitle
+import com.example.projectintern.composed.ThemeSwitch
 import com.example.projectintern.model.Dimensions
 import com.example.projectintern.model.WindowSize
 import com.example.projectintern.model.compactDimensions
@@ -84,14 +85,17 @@ fun LoginScreen() {
         topBar = {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                elevation = dimensions.large
+                elevation = dimensions.large,
+                color = OnPrimaryLight
             ) {
                 CenterAlignedTopAppBar(navigationIcon = {
                     IconButton(onClick = { }) {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowLeft,
                             contentDescription = "Back Icon",
-                            Modifier.size(32.dp).padding(1.dp)
+                            Modifier
+                                .size(32.dp)
+                                .padding(1.dp)
                         )
                     }
                 }, title = {
@@ -256,6 +260,7 @@ fun SendOTPButton() {
     ) {
         CustomOTPButton(buttonText = "Send OTP", onClick = {})
     }
+
 }
 
 @Composable

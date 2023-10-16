@@ -12,9 +12,9 @@ import androidx.compose.ui.graphics.Color
 
 
 val PrimaryLight = Color(0xFF0061a4)
+val SignInColor = Color(0xFF37474F)
 val CustomButtonColor = Color(0xFF00B99F)
 val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFFd1e4ff)
 val OnPrimaryContainerLight = Color(0xFF001d36)
 
 val SecondaryLight = Color(0xFF535f70)
@@ -41,6 +41,8 @@ val SurfaceVariantLight = Color(0xFFdfe2eb)
 val OnSurfaceVariantLight = Color(0xFF43474e)
 
 // Dark
+val SignInColorDark = Color(0xFFFFFFFF)
+
 val PrimaryDark = Color(0xFF2c9fff)
 val OnPrimaryDark = Color(0xFF003258)
 val PrimaryContainerDark = Color(0xFF00497d)
