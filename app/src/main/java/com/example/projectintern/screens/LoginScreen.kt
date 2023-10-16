@@ -1,151 +1,230 @@
 package com.example.projectintern.screens
 
-import android.widget.Toast
+import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.projectintern.R
-import com.example.projectintern.composed.HeadingTextComponent
-import com.example.projectintern.composed.MyTextFieldComponent
-import com.example.projectintern.composed.NormalTextComponent
-import com.example.projectintern.model.updateAppLanguage
-import com.example.projectintern.utils.LanguageSelection
+import com.example.projectintern.composed.CustomOTPButton
+import com.example.projectintern.composed.SignInTitle
+import com.example.projectintern.ui.theme.OnPrimaryLight
 
-@Composable
-fun MyTheme(content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = MaterialTheme.colorScheme.copy(primary = Color(0xFF1A237E)),
-        typography = MaterialTheme.typography.copy(
-            headlineLarge = MaterialTheme.typography.headlineLarge.copy(
-                color = Color.White
-            )
-        ),
-        content = content
-    )
-}
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen() {
-    /**
-    MyTheme {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    val context = LocalContext.current
-
-    Column(
-    modifier = Modifier
-    .fillMaxSize()
-    .padding(16.dp)
-    .background(Color.White),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-    Text(
-    text = "Login",
-    style = MaterialTheme.typography.headlineMedium,
-    modifier = Modifier.padding(8.dp)
-    )
-
-    // Email input field
-    OutlinedTextField(
-    value = email,
-    onValueChange = { email = it },
-    label = { Text("Email") },
-    modifier = Modifier
-    .fillMaxWidth()
-    .padding(8.dp)
-    )
-
-    // Password input field
-    OutlinedTextField(
-    value = password,
-    onValueChange = { password = it },
-    label = { Text("Password") },
-    visualTransformation = PasswordVisualTransformation(),
-    keyboardOptions = KeyboardOptions.Default.copy(
-    keyboardType = KeyboardType.Password
-    ),
-    modifier = Modifier
-    .fillMaxWidth()
-    .padding(8.dp)
-    )
-
-    // Login button
-    Button(
-    onClick = {
-    // You can handle login logic here, e.g., validating input, making API calls, etc.
-    // For this example, we'll just display a toast message.
-    if (email.isNotEmpty() && password.isNotEmpty()) {
-    // Display a toast message
-    val text = "Logging in with email: $email and password: $password"
-    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
-    } else {
-    Toast.makeText(
-    context,
-    "Please enter both email and password",
-    Toast.LENGTH_SHORT
-    ).show()
-    }
-    },
-    modifier = Modifier
-    .fillMaxWidth()
-    .padding(8.dp)
-    ) {
-    Text(text = "Login")
-    }
-    }
-    }
-     **/
+    Scaffold(
+        topBar = {
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                elevation = 16.dp
+            ) {
+                CenterAlignedTopAppBar(
+                    navigationIcon = {
+                        IconButton(onClick = { }) {
+                            Icon(
+                                imageVector = Icons.Default.KeyboardArrowLeft,
+                                contentDescription = "Back Icon",
+                                Modifier.size(32.dp)
+                            )
+                        }
+                    },
+                    title = {
+                        SignInTitle(text = "Sign in")
+                    }
+                )
+            }
+        },
+    ) {values->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(values)
+                .background(color = OnPrimaryLight) //White Color
 
 
-    Surface(
-        color = Color.White, modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .padding(28.dp)
-    ) {
+        ) {
 
-        Column(modifier=Modifier.fillMaxSize()) {
+            //Body Section
+            LoginContent()
 
-            NormalTextComponent(value = stringResource(id = R.string.hello))
-            HeadingTextComponent(value = stringResource(id = R.string.create_account))
+            }
 
-            MyTextFieldComponent(labelValue = stringResource(id = R.string.first_name))
 
         }
 
-    }
-
-
 }
+
+
+
+
+@Composable
+fun LoginContent() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+
+
+        Spacer(modifier = Modifier.height(25.dp))
+        //Logo Section
+        Image(
+            painter = painterResource(id = R.drawable.kotha_app_logo),
+            contentDescription = "app logo",
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .width(40.23196.dp)
+                .height(35.dp)
+        )
+
+        Spacer(modifier = Modifier.height(25.dp))
+        TitleSection()
+        Spacer(modifier = Modifier.height(7.dp))
+        ExampleText()
+        Spacer(modifier = Modifier.height(22.dp))
+        PhoneNumberInput()
+        Spacer(modifier = Modifier.height(40.dp))
+        SendOTPButton()
+        Spacer(modifier = Modifier.height(46.dp))
+        RegisterLink()
+    }
+}
+
+@Composable
+fun TitleSection() {
+    Text(
+        text = "Type your 11 digit Bangladeshi Number",
+        textAlign = TextAlign.Center,
+        fontSize = 16.sp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(19.dp),
+        fontWeight = FontWeight(700),
+        fontFamily = FontFamily(Font(R.font.inter_font))
+    )
+}
+
+@Composable
+fun ExampleText() {
+    Text(
+        text = "Example: 01713048764",
+        textAlign = TextAlign.Center,
+        fontSize = 14.sp,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier
+            .fillMaxWidth()
+            .alpha(0.8f),
+        color = Color(red = 0.21568627655506134f, green = 0.27843138575553894f, blue = 0.30980393290519714f, alpha = 0.800000011920929f),
+        fontWeight = FontWeight.SemiBold,
+        fontStyle = FontStyle.Normal,
+    )
+}
+
+@Composable
+fun PhoneNumberInput() {
+    OutlinedTextField(
+        value = "01715011222",
+        onValueChange = { /* Handle value change here */ },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .border(width = 1.dp, color = Color(0xFF979797)),
+        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
+        textStyle = TextStyle(
+            fontSize = 20.sp, // Increase font size
+            fontWeight = FontWeight.Normal, // Adjust font weight
+            color = Color.Black, // Adjust text color
+            textAlign = TextAlign.Center
+        )
+
+    )
+}
+
+@Composable
+fun SendOTPButton() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        CustomOTPButton(buttonText = "Send OTP", onClick = {})
+    }
+}
+
+@Composable
+fun RegisterLink() {
+    Text(
+        text = "Don’t have a Bangladeshi Number? Tap here",
+        textAlign = TextAlign.Center,
+        fontSize = 16.sp,
+        textDecoration = TextDecoration.Underline,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier
+            .fillMaxWidth()
+            .alpha(1f),
+        color = Color(0f, 0.5803921818733215f, 0.49803921580314636f, 1f),
+        fontWeight = FontWeight.Medium,
+        fontStyle = FontStyle.Normal,
+    )
+}
+
+
 
 
 @Preview
 @Composable
-fun DefaultScreenView() {
+fun Log() {
     LoginScreen()
 }
+
+
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultScreenView() {
+//    Body()
+//}
