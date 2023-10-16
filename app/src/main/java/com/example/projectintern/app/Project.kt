@@ -1,5 +1,6 @@
 package com.example.projectintern.app
 
+import DemoLoginScreen
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.projectintern.darkMode
 import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.screens.LandscapeScreen
+import com.example.projectintern.screens.LoginScreen
 import com.example.projectintern.screens.PortraitScreen
 import com.example.projectintern.ui.theme.AppTheme
 import com.example.projectintern.ui.theme.ProjectInternTheme
@@ -29,12 +31,13 @@ fun ProjectApp() {
     ProjectInternTheme(window, darkTheme = darkMode) {
         Surface(modifier = Modifier.fillMaxSize()) {
 
-            if (AppTheme.orientation == Orientation.Portrait) {
-             PortraitScreen()
-
-            } else {
-                LandscapeScreen()
-            }
+            LoginScreen()
+//            if (AppTheme.orientation == Orientation.Portrait) {
+//             LoginScreen()
+//
+//            } else {
+//                LandscapeScreen()
+//            }
         }
 
 
