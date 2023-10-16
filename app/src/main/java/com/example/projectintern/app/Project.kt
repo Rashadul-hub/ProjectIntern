@@ -21,16 +21,26 @@ import com.example.projectintern.ui.theme.ProjectInternTheme
 fun ProjectApp() {
 
     val window = rememberWindowSizeClass()
+    val navController = rememberNavController()
 
     ProjectInternTheme(window, darkTheme = darkMode) {
 
-        val navController = rememberNavController()
 
         Surface(modifier = Modifier.fillMaxSize()) {
+
+            NavHost(navController = navController, startDestination = "login") {
+                composable("login") {
+                    LoginScreen(navController = navController)
+                }
+                composable("otp") {
+                    OtpScreen()
+                }
+            }
 
         }
     }
 }
+
 
 @Preview
 @Composable
