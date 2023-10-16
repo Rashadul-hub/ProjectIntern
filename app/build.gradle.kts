@@ -75,13 +75,14 @@ dependencies {
     //New dependencies
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
     implementation ("androidx.compose.material3:material3:1.0.0")
-
     implementation("androidx.compose.foundation:foundation:1.0.7")
 
 
 
-    //Navigation
-    implementation("androidx.navigation:navigation-compose:2.5.2")
+    // Navigation Compose
+    implementation ("androidx.navigation:navigation-compose:2.4.0-alpha06")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+
 
     //Pager & Pager Indicator
     implementation("com.google.accompanist:accompanist-pager:0.23.1")

@@ -51,6 +51,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.projectintern.R
 import com.example.projectintern.composed.CustomOTPButton
 import com.example.projectintern.composed.SignInTitle
@@ -63,6 +64,7 @@ import com.example.projectintern.model.mediumDimensions
 import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.model.smallDimensions
 import com.example.projectintern.ui.theme.OnPrimaryLight
+
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -86,7 +88,6 @@ fun LoginScreen() {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = dimensions.large,
-                color = OnPrimaryLight
             ) {
                 CenterAlignedTopAppBar(navigationIcon = {
                     IconButton(onClick = { }) {
@@ -113,7 +114,7 @@ fun LoginScreen() {
                     Box(
                         modifier = Modifier
                             .padding(values)
-                            .background(color = OnPrimaryLight)
+//                            .background(color = OnPrimaryLight)
                     ) {
                         // Body Section
                         LoginContent(dimensions)
@@ -126,7 +127,7 @@ fun LoginScreen() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(values)
-                    .background(color = OnPrimaryLight) // White Color
+//                    .background(color = OnPrimaryLight) // White Color
             ) {
 
                 // Body Section
@@ -286,4 +287,3 @@ fun RegisterLink() {
 fun Log() {
     LoginScreen()
 }
-

@@ -1,5 +1,6 @@
 package com.example.projectintern.ui.theme
 
+import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
 
 
@@ -7,8 +8,6 @@ import androidx.compose.ui.graphics.Color
 // Material3 Colors
 
 // Light
-
-
 
 
 val PrimaryLight = Color(0xFF0061a4)
