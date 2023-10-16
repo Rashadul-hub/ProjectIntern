@@ -3,6 +3,7 @@ package com.example.projectintern.composed
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -71,7 +72,7 @@ fun CustomOTPButton(
         onClick = onClick,
         colors = ButtonDefaults.elevatedButtonColors(containerColor = Color.Transparent),
         modifier = Modifier
-            .width(307.dp) //fixed width
+            .width(307.dp) // Fixed width
             .height(55.dp)
             .fillMaxWidth() // Take the full available width
             .clip(
@@ -82,25 +83,22 @@ fun CustomOTPButton(
                     bottomEnd = 16.dp
                 )
             )
-            .background(CustomButtonColor),
-
-        ) {
+            .background(CustomButtonColor)
+            .padding(horizontal = 16.dp),
+        contentPadding = PaddingValues(0.dp), // Remove default content padding
+    ) {
         Text(
             text = buttonText,
             textAlign = TextAlign.Center,
             fontSize = 20.sp,
             letterSpacing = (-0.3).sp,
-            modifier = Modifier
-                .fillMaxWidth() // Take the full available width
-                .fillMaxHeight() // Take the full available height
-                .padding(horizontal = 16.dp) ,// Add horizontal padding
             color = OnPrimaryLight,
             fontWeight = FontWeight(600),
             fontFamily = FontFamily(Font(R.font.inter_semi_bold)),
+            modifier = Modifier.align(Alignment.CenterVertically) // Align text vertically in the center
         )
     }
 }
-
 
 
 ///Switch Theme Mode
