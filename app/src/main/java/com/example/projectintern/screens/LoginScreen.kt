@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.IconButton
@@ -78,7 +81,7 @@ fun LoginScreen() {
         topBar = {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                elevation = dimensions.small
+                elevation = dimensions.large
             ) {
                 CenterAlignedTopAppBar(navigationIcon = {
                     IconButton(onClick = { }) {
@@ -110,7 +113,7 @@ fun LoginScreen() {
                     }
                 }
             }
-        } else{
+        } else {
             // In portrait mode, we  use this existing layout
             Box(
                 modifier = Modifier
@@ -132,9 +135,12 @@ fun LoginContent(dimensions: Dimensions) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(dimensions.medium) // Adjust padding based on window size
+            .wrapContentSize(Alignment.Center)
+
+
     ) {
 
-        Spacer(modifier = Modifier.height(dimensions.small))
+        Spacer(modifier = Modifier.height(dimensions.medium))
 
         // Logo Section
         Image(
@@ -143,7 +149,7 @@ fun LoginContent(dimensions: Dimensions) {
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
-                .height(35.dp)
+                .height(40.dp)
         )
 
         Spacer(modifier = Modifier.height(dimensions.smallMedium))
@@ -152,13 +158,12 @@ fun LoginContent(dimensions: Dimensions) {
         ExampleText()
         Spacer(modifier = Modifier.height(dimensions.medium))
         PhoneNumberInput()
-        Spacer(modifier = Modifier.height(dimensions.large))
+        Spacer(modifier = Modifier.height(dimensions.mediumLarge))
         SendOTPButton()
         Spacer(modifier = Modifier.height(dimensions.mediumLarge))
         RegisterLink()
     }
 }
-
 
 
 @Composable
@@ -197,25 +202,31 @@ fun PhoneNumberInput() {
     var phoneNumber by remember {
         mutableStateOf("")
     }
-    OutlinedTextField(
-        value = phoneNumber,
-        onValueChange = { phoneNumber= it },  // Update the mutable state with the new input
+
+    Box(
+        contentAlignment = Alignment.Center, // Center the content horizontally and vertically
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp)
-            .border(width = 1.dp, color = Color(0xFF979797)),
-        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
-
-
-        textStyle = TextStyle(
-            fontSize = 24.sp,
-            fontWeight = FontWeight(600),
-            color = Color(0xFF000000),
-            textAlign = TextAlign.Center,
-            fontFamily = FontFamily(Font(R.font.inter_semi_bold))
+            .fillMaxWidth() // Take the full available width
+            .padding(horizontal = 16.dp) // Add horizontal padding
+            .padding(vertical = 6.dp)
+    ) {
+        OutlinedTextField(
+            value = phoneNumber,
+            onValueChange = { phoneNumber = it },
+            modifier = Modifier
+                .fillMaxWidth() // Take the full available width within the Box
+                .widthIn(max = 333.dp) // maximum width
+                .border(width = 1.dp, color = Color(0xFF979797)),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
+            textStyle = TextStyle(
+                fontSize = 20.sp,
+                fontWeight = FontWeight(600),
+                color = Color(0xFF000000),
+                textAlign = TextAlign.Center,
+                fontFamily = FontFamily(Font(R.font.inter_semi_bold))
+            )
         )
-
-    )
+    }
 }
 
 
