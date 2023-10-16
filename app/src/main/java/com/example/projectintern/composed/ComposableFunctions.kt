@@ -71,8 +71,9 @@ fun CustomOTPButton(
         onClick = onClick,
         colors = ButtonDefaults.elevatedButtonColors(containerColor = Color.Transparent),
         modifier = Modifier
-            .fillMaxWidth() // Take the full available width
+            .width(307.dp) //fixed width
             .height(55.dp)
+            .fillMaxWidth() // Take the full available width
             .clip(
                 RoundedCornerShape(
                     topStart = 6.dp,

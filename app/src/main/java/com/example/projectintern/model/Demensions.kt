@@ -16,7 +16,7 @@ data class Dimensions(
 val smallDimensions = Dimensions(
     small = 20.dp,
     smallMedium = 25.dp,
-    medium = 7.dp,
+    medium = 6.dp,
     mediumLarge = 40.dp,
     large = 46.dp
 )

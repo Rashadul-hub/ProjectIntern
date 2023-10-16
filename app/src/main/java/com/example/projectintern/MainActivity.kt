@@ -17,7 +17,7 @@ import com.example.projectintern.app.ProjectApp
 import com.example.projectintern.composed.ThemeSwitch
 
 
-var darkMode  by mutableStateOf(true) //For// Switching Theme Dark -> Light Mode
+var darkMode  by mutableStateOf(false) //For// Switching Theme Dark -> Light Mode
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
