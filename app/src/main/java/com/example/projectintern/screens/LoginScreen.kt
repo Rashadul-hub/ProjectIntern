@@ -37,7 +37,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -45,6 +47,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -88,7 +91,7 @@ fun LoginScreen() {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowLeft,
                             contentDescription = "Back Icon",
-                            Modifier.size(32.dp)
+                            Modifier.size(32.dp).padding(1.dp)
                         )
                     }
                 }, title = {
@@ -168,18 +171,30 @@ fun LoginContent(dimensions: Dimensions) {
 
 @Composable
 fun TitleSection() {
+    val text = buildAnnotatedString {
+        withStyle(style = SpanStyle(color = Color(0xFF37474F))) {
+            append("Type your 11 digit ")
+        }
+        withStyle(style = SpanStyle(color = Color(0xFF006115))) { // Set the color to green
+            append("Bangladeshi")
+        }
+        withStyle(style = SpanStyle(color = Color(0xFF37474F))) {
+            append(" Number")
+        }
+    }
+
     Text(
-        text = "Type your 11 digit Bangladeshi Number",
+        text = text,
         textAlign = TextAlign.Center,
         fontSize = 16.sp,
         modifier = Modifier
-            .fillMaxWidth() // Take the full available width
-            .wrapContentHeight(), // Wrap the content for height
+            .fillMaxWidth()
+            .wrapContentHeight(),
         fontWeight = FontWeight(700),
-        color = Color(0xFF37474F),
         fontFamily = FontFamily(Font(R.font.inter_bold))
     )
 }
+
 
 @Composable
 fun ExampleText() {
@@ -223,6 +238,7 @@ fun PhoneNumberInput() {
                 fontWeight = FontWeight(600),
                 color = Color(0xFF000000),
                 textAlign = TextAlign.Center,
+                letterSpacing = 10.sp,
                 fontFamily = FontFamily(Font(R.font.inter_semi_bold))
             )
         )
@@ -235,7 +251,8 @@ fun SendOTPButton() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp), contentAlignment = Alignment.Center
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
     ) {
         CustomOTPButton(buttonText = "Send OTP", onClick = {})
     }
