@@ -22,8 +22,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.projectintern.R
-import com.example.projectintern.composed.ComposableButton
-import com.example.projectintern.composed.TextHeadLine
 import com.example.projectintern.composed.ThemeSwitch
 import com.example.projectintern.ui.theme.AppTheme
 
@@ -53,7 +51,7 @@ fun LandscapeScreen() {
                     .fillMaxHeight(),
                 contentScale = ContentScale.FillHeight
             )
-            TextHeadLine(text = "Welcome", color = Color.White)
+            //TextHeadLine(text = "Welcome", color = Color.White)
         }
         Column(
             modifier = Modifier
@@ -74,7 +72,7 @@ fun LandscapeScreen() {
                 textAlign = TextAlign.Center
             )
             ThemeSwitch() // Theme Switch Mode
-            ComposableButton()
+//            ComposableButton()
         }
 
     }
