@@ -2,6 +2,7 @@ package com.example.projectintern.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -46,9 +48,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.projectintern.R
 import com.example.projectintern.composed.CustomOTPButton
 import com.example.projectintern.composed.SignInTitle
@@ -61,12 +65,10 @@ import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.model.smallDimensions
 
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavController) {
-
 
     val windowSize = rememberWindowSizeClass()
     val dimensions = when (windowSize.width) {
@@ -80,6 +82,7 @@ fun LoginScreen(navController: NavController) {
     val isLandscape = windowSize.width is WindowSize.Large
 
     Scaffold(
+        modifier = Modifier.background(Color.White),
         topBar = {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
@@ -96,8 +99,9 @@ fun LoginScreen(navController: NavController) {
                         )
                     }
                 }, title = {
-                    SignInTitle(text = "Sign in")
+                    SignInTitle(text = stringResource(id = R.string.sign_in))
                 })
+
             }
         },
     ) { values ->
@@ -110,10 +114,10 @@ fun LoginScreen(navController: NavController) {
                     Box(
                         modifier = Modifier
                             .padding(values)
-//                            .background(color = OnPrimaryLight)
+                            .background(color = Color.White)
                     ) {
                         // Body Section
-                        LoginContent(dimensions,navController)
+                        LoginContent(dimensions, navController)
                     }
                 }
             }
@@ -127,7 +131,7 @@ fun LoginScreen(navController: NavController) {
             ) {
 
                 // Body Section
-                LoginContent(dimensions,navController)
+                LoginContent(dimensions, navController)
             }
         }
     }
@@ -172,15 +176,22 @@ fun LoginContent(dimensions: Dimensions, navController: NavController) {
 
 @Composable
 fun TitleSection() {
+
+    val typeYour11Digit = stringResource(R.string.type_your_11_digit)
+    val bangladeshi = stringResource(R.string.bangladeshi)
+    val number = stringResource(R.string.number)
+
+
+
     val text = buildAnnotatedString {
         withStyle(style = SpanStyle(color = Color(0xFF37474F))) {
-            append("Type your 11 digit ")
+            append(typeYour11Digit," ")
         }
         withStyle(style = SpanStyle(color = Color(0xFF006115))) { // Set the color to green
-            append("Bangladeshi")
+            append(bangladeshi," ")
         }
         withStyle(style = SpanStyle(color = Color(0xFF37474F))) {
-            append(" Number")
+            append(number)
         }
     }
 
@@ -200,7 +211,7 @@ fun TitleSection() {
 @Composable
 fun ExampleText() {
     Text(
-        text = "Example: 01713048764",
+        text = stringResource(id = R.string.example),
         textAlign = TextAlign.Center,
         fontSize = 14.sp,
         modifier = Modifier
@@ -232,12 +243,17 @@ fun PhoneNumberInput() {
             modifier = Modifier
                 .fillMaxWidth() // Take the full available width within the Box
                 .widthIn(max = 333.dp) // maximum width
-                .border(width = 1.dp, color = Color(0xFF979797)),
+                .border(
+                    width = 1.dp,
+                    color = Color(0xFF979797)
+                    // color = MaterialTheme.colorScheme.primaryContainer
+                ),
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
             textStyle = TextStyle(
                 fontSize = 20.sp,
                 fontWeight = FontWeight(600),
                 color = Color(0xFF000000),
+             //   color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Center,
                 letterSpacing = 10.sp,
                 fontFamily = FontFamily(Font(R.font.inter_semi_bold))
@@ -255,7 +271,7 @@ fun SendOTPButton(navController: NavController) {
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
-        CustomOTPButton(buttonText = "Send OTP") {
+        CustomOTPButton(buttonText = stringResource(id = R.string.send_otp)) {
             navController.navigate("otp") // Navigate to the OTP screen
         }
     }
@@ -265,7 +281,7 @@ fun SendOTPButton(navController: NavController) {
 @Composable
 fun RegisterLink() {
     Text(
-        text = "Don’t have a Bangladeshi Number? Tap here",
+        text = stringResource(id = R.string.dont_have_bangladeshi_number_tap_here),
         textAlign = TextAlign.Center,
         fontSize = 16.sp,
         textDecoration = TextDecoration.Underline,
@@ -274,8 +290,15 @@ fun RegisterLink() {
             .fillMaxWidth() // Take the full available width
             .wrapContentHeight(), // Wrap the content for height
         color = Color(0xFF00947F),
+       // color = MaterialTheme.colorScheme.onPrimary,
         fontWeight = FontWeight(500),
         fontFamily = FontFamily(Font(R.font.inter_medium))
     )
 }
 
+@Preview
+@Composable
+fun View() {
+    val dummyNavController = rememberNavController() // Create a dummy NavController
+    LoginScreen(navController = dummyNavController)
+}
