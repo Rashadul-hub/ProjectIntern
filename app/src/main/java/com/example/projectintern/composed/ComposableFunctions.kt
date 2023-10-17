@@ -35,19 +35,35 @@ import com.example.projectintern.R
 import com.example.projectintern.darkMode
 import com.example.projectintern.ui.theme.CustomButtonColor
 import com.example.projectintern.ui.theme.OnPrimaryLight
-import com.example.projectintern.ui.theme.SignInColor
 
 
 //SignInTitle
 @Composable
 fun SignInTitle(text: String) {
     Text(
-        text = "$text",
+        text = text,
         style = TextStyle(
             fontSize = 17.sp,
             fontFamily = FontFamily(Font(R.font.inter_bold)),
             fontWeight = FontWeight(700),
-            color = SignInColor, //Color
+            color = Color(0xFF37474F), //Color
+            textAlign = TextAlign.Center,
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+
+    )
+}
+@Composable
+fun TitleText(text: String) {
+    Text(
+        text = text,
+        style = TextStyle(
+            fontSize = 17.sp,
+            fontFamily = FontFamily(Font(R.font.inter_bold)),
+            fontWeight = FontWeight(700),
+            color = Color(0xFF37474F), //Color
             textAlign = TextAlign.Center,
         ),
         modifier = Modifier
@@ -158,9 +174,10 @@ fun ThemeSwitch() {
 }
 
 
+
 @Preview
 @Composable
 fun ViewButton2() {
-    CustomOTPButton(buttonText = "shdjka", onClick = {})
+    CustomOTPButton(buttonText = "DEMO", onClick = {})
 }
 
