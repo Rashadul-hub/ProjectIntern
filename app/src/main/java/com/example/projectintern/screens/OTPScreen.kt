@@ -3,7 +3,6 @@ package com.example.projectintern.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,52 +14,38 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.projectintern.R
 import com.example.projectintern.composed.CustomOTPButton
 import com.example.projectintern.composed.ResendButton
@@ -72,11 +57,10 @@ import com.example.projectintern.model.largeDimensions
 import com.example.projectintern.model.mediumDimensions
 import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.model.smallDimensions
-import com.example.projectintern.ui.theme.OnPrimaryLight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OtpScreen() {
+fun OtpScreen(navController: NavController) {
 
 
     val windowSize = rememberWindowSizeClass()
@@ -97,7 +81,9 @@ fun OtpScreen() {
                 elevation = dimensions.large
             ) {
                 CenterAlignedTopAppBar(navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = {
+                        navController.navigate("login") //back to Login Screen
+                    }) {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowLeft,
                             contentDescription = "Back Icon",
@@ -107,7 +93,7 @@ fun OtpScreen() {
                         )
                     }
                 }, title = {
-                    SignInTitle(text = "Sign in")
+                    SignInTitle(text = stringResource(id = R.string.sign_in))
                 })
             }
         },
@@ -124,7 +110,7 @@ fun OtpScreen() {
                            // .background(color = OnPrimaryLight)
                     ) {
                         // Body Section
-                        OtpContents(dimensions)
+                        OtpContents(dimensions,navController)
                     }
                 }
             }
@@ -138,7 +124,7 @@ fun OtpScreen() {
             ) {
 
                 // Body Section
-                OtpContents(dimensions)
+                OtpContents(dimensions,navController)
             }
         }
     }
@@ -147,7 +133,7 @@ fun OtpScreen() {
 
 
 @Composable
-fun OtpContents(dimensions: Dimensions) {
+fun OtpContents(dimensions: Dimensions,navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -176,7 +162,7 @@ fun OtpContents(dimensions: Dimensions) {
         Spacer(modifier = Modifier.height(dimensions.medium))
         InputOTPNumber()
         Spacer(modifier = Modifier.height(dimensions.medium))
-        ConfirmButton()
+        ConfirmButton(navController)
         Spacer(modifier = Modifier.height(dimensions.mediumLarge))
         DummyText()
     }
@@ -185,7 +171,7 @@ fun OtpContents(dimensions: Dimensions) {
 
 @Composable
 fun VerifySection() {
-    val text = "OTP Verification"
+    val text = stringResource(id = R.string.otp_verification)
 
     Text(
         text = text,
@@ -204,7 +190,7 @@ fun VerifySection() {
 @Composable
 fun SMSInformationSection() {
     Text(
-        text = "A SMS is sent to the number: 017150112222 ",
+        text = stringResource(id = R.string.sms_sent),
         textAlign = TextAlign.Center,
         fontSize = 14.sp,
         modifier = Modifier
@@ -236,13 +222,13 @@ fun InputOTPNumber() {
                 .border(1.dp, Color.Black) //Black Border
         )
 
-        ResendButton( buttonText = "Resend in 11 seconds",onClick = {}) //Resend Button
+        ResendButton( buttonText =  stringResource(id = R.string.resend_in_seconds), onClick = {})//Resend Button
     }
 }
 
 
 @Composable
-fun ConfirmButton() {
+fun ConfirmButton(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -254,7 +240,7 @@ fun ConfirmButton() {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
-                text = "3 attempts left",
+                text = stringResource(id = R.string.attempts_left),
                 style = TextStyle(
                     fontSize = 12.sp,
                     fontFamily = FontFamily(Font(R.font.inter_medium)),
@@ -266,7 +252,10 @@ fun ConfirmButton() {
 
             Spacer(modifier = Modifier.height(8.dp)) // Add vertical spacing
 
-            CustomOTPButton(buttonText = "Confirm", onClick = {})
+            CustomOTPButton(buttonText = stringResource(id = R.string.confirm)){
+                ///used FOr Demo Purpose
+                navController.navigate("mode")
+            }
         }
     }
 }
@@ -274,12 +263,18 @@ fun ConfirmButton() {
 
 @Composable
 fun DummyText() {
+
+    val waitAndPressString = stringResource(R.string.wait_and_press)
+    val contactSupportString = stringResource(R.string.contact_support)
+    val emailString = stringResource(R.string.info_kotha_app_email)
+
+
     val text = buildAnnotatedString {
         withStyle(style = SpanStyle(color = Color(0xCC37474F))) {
-            append("Wait and Press Resend if no OTP arrives. \nContact Support ")
+            append("$waitAndPressString \n$contactSupportString")
         }
         withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline, color = Color(0xCC37474F))) {
-            append("info@kotha.app")
+            append(" ",emailString)
         }
     }
 
@@ -295,10 +290,10 @@ fun DummyText() {
     )
 }
 
-
-
 @Preview
 @Composable
-fun OtpPreview() {
-    OtpScreen()
+fun OTPView() {
+    val dummyNavController = rememberNavController() // Create a dummy NavController
+    OtpScreen(navController = dummyNavController)
 }
+
