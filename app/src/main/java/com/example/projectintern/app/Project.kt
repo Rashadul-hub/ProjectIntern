@@ -3,7 +3,6 @@ package com.example.projectintern.app
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -13,6 +12,7 @@ import com.example.projectintern.darkMode
 import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.screens.LoginScreen
 import com.example.projectintern.screens.OtpScreen
+import com.example.projectintern.screens.SwitchModeScreen
 import com.example.projectintern.ui.theme.ProjectInternTheme
 
 
@@ -20,11 +20,11 @@ import com.example.projectintern.ui.theme.ProjectInternTheme
 @Composable
 fun ProjectApp() {
 
+
     val window = rememberWindowSizeClass()
     val navController = rememberNavController()
 
     ProjectInternTheme(window, darkTheme = darkMode) {
-
 
         Surface(modifier = Modifier.fillMaxSize()) {
 
@@ -33,7 +33,10 @@ fun ProjectApp() {
                     LoginScreen(navController = navController)
                 }
                 composable("otp") {
-                    OtpScreen()
+                    OtpScreen(navController = navController)
+                }
+                composable("mode") {
+                    SwitchModeScreen(navController = navController)
                 }
             }
 

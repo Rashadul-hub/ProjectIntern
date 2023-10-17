@@ -8,6 +8,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
@@ -18,41 +19,16 @@ import com.example.projectintern.model.compactDimensions
 import com.example.projectintern.model.largeDimensions
 import com.example.projectintern.model.mediumDimensions
 import com.example.projectintern.model.smallDimensions
+import com.example.projectintern.utils.LanguageSelection
 import com.example.projectintern.utils.LocalAppDimens
 import com.example.projectintern.utils.LocalOrientationMode
 import com.example.projectintern.utils.Orientation
 import com.example.projectintern.utils.ProvideAppUtils
 
-
-private val DarkColorPalette = darkColorScheme(
-    primary = PrimaryDark,
-    onPrimary = OnPrimaryDark,
-    primaryContainer = SignInColorDark,
-    onPrimaryContainer = OnPrimaryContainerDark,
-    secondary = SecondaryDark,
-    onSecondary = OnSecondaryDark,
-    secondaryContainer = SecondaryContainerDark,
-    onSecondaryContainer = OnSecondaryContainerDark,
-    tertiary = TertiaryDark,
-    onTertiary = OnTertiaryDark,
-    tertiaryContainer = TertiaryContainerDark,
-    onTertiaryContainer = OnTertiaryContainerDark,
-    error = ErrorDark,
-    onError = OnErrorDark,
-    errorContainer = ErrorContainerDark,
-    onErrorContainer = OnErrorContainerDark,
-    background = BackgroundDark,
-    onBackground = OnBackgroundDark,
-    surface = SurfaceDark,
-    outline = OutlineDark,
-    surfaceVariant = SurfaceVariantDark,
-    onSurfaceVariant = OnSurfaceVariantDark,
-)
-
-private val LightColorPalette = lightColorScheme(
-    primary = PrimaryLight,
-    onPrimary = OnPrimaryLight,
-    primaryContainer = SignInColor,
+ val LightColorPalette = lightColorScheme(
+     primary = Color(0xFF000000),//Text Color
+     onPrimary = Color(0xFF00947F), //RegisterLink Text Color
+     primaryContainer = Color(0xFF979797), //Border Color
     onPrimaryContainer = OnPrimaryContainerLight,
     secondary = SecondaryLight,
     onSecondary = OnSecondaryLight,
@@ -73,7 +49,30 @@ private val LightColorPalette = lightColorScheme(
     surfaceVariant = SurfaceVariantLight,
     onSurfaceVariant = OnSurfaceVariantLight,
 )
-
+val DarkColorPalette = darkColorScheme(
+    primary = Color(0xFFFFFFFF),//Text Color
+    onPrimary = Color(0xFF00947F), //RegisterLink Text Color
+    primaryContainer = Color(0xFFB3B0B0), //Border Color
+    onPrimaryContainer = OnPrimaryContainerDark,
+    secondary = SecondaryDark,
+    onSecondary = OnSecondaryDark,
+    secondaryContainer = SecondaryContainerDark,
+    onSecondaryContainer = OnSecondaryContainerDark,
+    tertiary = TertiaryDark,
+    onTertiary = OnTertiaryDark,
+    tertiaryContainer = TertiaryContainerDark,
+    onTertiaryContainer = OnTertiaryContainerDark,
+    error = ErrorDark,
+    onError = OnErrorDark,
+    errorContainer = ErrorContainerDark,
+    onErrorContainer = OnErrorContainerDark,
+    background = BackgroundDark,
+    onBackground = OnBackgroundDark,
+    surface = SurfaceDark,
+    outline = OutlineDark,
+    surfaceVariant = SurfaceVariantDark,
+    onSurfaceVariant = OnSurfaceVariantDark,
+)
 @Composable
 fun ProjectInternTheme(
 
@@ -91,16 +90,22 @@ fun ProjectInternTheme(
         LightColorPalette
     }
 
+
+
+
+
     //Optional , This Part helps You Set The Status-bar Color
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colors.background.toArgb()
+
             WindowCompat.getInsetsController(window, view)
                 .isAppearanceLightStatusBars = !darkTheme
         }
     }
+
     //For Responsive Screen Size
     val orientation = when{
         windowSizeClass.width.size > windowSizeClass.height.size -> Orientation.Landscape

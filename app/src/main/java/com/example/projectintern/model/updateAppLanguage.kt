@@ -28,8 +28,7 @@ fun updateAppLanguage(
         config.locale = locale
     }
 
-
-
     // Update the configuration and resources with the new locale
     context.resources.updateConfiguration(config, context.resources.displayMetrics)
 }
+
