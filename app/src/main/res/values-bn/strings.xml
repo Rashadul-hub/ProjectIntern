@@ -2,14 +2,30 @@
 <resources>
 
     <string name="welcome_message">স্বাগতম</string>
-    <string name="change_language">ভাষা পরিবর্তন করুন</string>
-
-    <string name="profile_name">নাম</string>
-    <string name="profile_email">ইমেইল</string>
-
     <string name="hello">হ্যালো</string>
     <string name="create_account">একটি অ্যাকাউন্ট তৈরি করুন</string>
     <string name="first_name">নামের প্রথমাংশ</string>
+
+
+    <string name="sign_in">সাইন ইন</string>
+    <string name="type_your_11_digit">আপনার ১১ ডিজিট </string>
+    <string name="bangladeshi"> বাংলাদেশি </string>
+    <string name="number">নম্বর টাইপ করুন</string>
+    <string name="example">উদাহরণ:০১৭১৩০৪৮৭৬৪</string>
+    <string name="send_otp">ওটিপি পাঠান</string>
+    <string name="dont_have_bangladeshi_number_tap_here">বাংলাদেশী নম্বর নেই? এখানে ট্যাপ করুন</string>
+    <string name="otp_verification">ওটিপি যাচাই</string>
+    <string name="sms_sent">একটি এসএমএস পাঠানো হয়েছে নম্বর:০১৭১৫০১১২২২২</string>
+    <string name="resend_in_seconds">১১ সেকেন্ড পরে পুনরায় পাঠান</string>
+    <string name="attempts_left">৩টি চেষ্টা বাকি</string>
+    <string name="confirm">নিশ্চিত করুন</string>
+    <string name="wait_and_press">অপেক্ষা করুন এবং ওটিপি না পেলে পুনরায় পাঠান।</string>
+    <string name="contact_support">সহায়ক যোগাযোগ করুন </string>
+    <string name="info_kotha_app_email"> info@kotha.app</string>
+    <string name="switch_language">ভাষা পরিবর্তন করুন</string>
+
+
+
 
 
 

@@ -2,14 +2,28 @@
     <string name="app_name">ProjectIntern</string>
 
     <string name="welcome_message">Welcome</string>
-    <string name="change_language">Change Language</string>
-
-
-    <string name="profile_name">Name</string>
-    <string name="profile_email">Email</string>
     <string name="hello">Hey There</string>
     <string name="create_account">Create An Account</string>
     <string name="first_name">First Name</string>
+
+
+
+    <string name="sign_in">Sign in</string>
+    <string name="type_your_11_digit">Type your 11 digit </string>
+    <string name="bangladeshi"> Bangladeshi </string>
+    <string name="number"> Number</string>
+    <string name="example">Example: 01713048764</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="dont_have_bangladeshi_number_tap_here">Don’t have a Bangladeshi Number? Tap here</string>
+    <string name="sms_sent">A SMS is sent to the number: 017150112222</string>
+    <string name="resend_in_seconds">Resend in 11 seconds</string>
+    <string name="attempts_left">3 attempts left</string>
+    <string name="confirm">Confirm</string>
+    <string name="wait_and_press">Wait and Press Resend if no OTP arrives</string>
+    <string name="contact_support">Contact Support </string>
+    <string name="info_kotha_app_email"> info@kotha.app</string>
+    <string name="switch_language">Switch Language</string>
 
 
 </resources>
