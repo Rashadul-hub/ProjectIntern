@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -82,8 +83,8 @@ fun LoginScreen(navController: NavController) {
     val isLandscape = windowSize.width is WindowSize.Large
 
     Scaffold(
-        modifier = Modifier.background(Color.White),
         topBar = {
+
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = dimensions.large,
@@ -114,7 +115,7 @@ fun LoginScreen(navController: NavController) {
                     Box(
                         modifier = Modifier
                             .padding(values)
-                            .background(color = Color.White)
+                            .background(color = MaterialTheme.colorScheme.background) //White BackGround Landscape Mode
                     ) {
                         // Body Section
                         LoginContent(dimensions, navController)
@@ -127,7 +128,7 @@ fun LoginScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(values)
-//                    .background(color = OnPrimaryLight) // White Color
+                    .background(color = MaterialTheme.colorScheme.background) // White BackGround Color Portrait Mode
             ) {
 
                 // Body Section
@@ -184,13 +185,13 @@ fun TitleSection() {
 
 
     val text = buildAnnotatedString {
-        withStyle(style = SpanStyle(color = Color(0xFF37474F))) {
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.secondary)) {
             append(typeYour11Digit," ")
         }
         withStyle(style = SpanStyle(color = Color(0xFF006115))) { // Set the color to green
             append(bangladeshi," ")
         }
-        withStyle(style = SpanStyle(color = Color(0xFF37474F))) {
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.secondary)) {
             append(number)
         }
     }
@@ -217,7 +218,7 @@ fun ExampleText() {
         modifier = Modifier
             .fillMaxWidth() //Take the full available width
             .wrapContentHeight(),// Wrap the content for height
-        color = Color(0xCC37474F),
+        color = MaterialTheme.colorScheme.scrim, //Hint Color
         fontWeight = FontWeight(600),
         fontFamily = FontFamily(Font(R.font.inter_semi_bold))
     )
@@ -245,15 +246,13 @@ fun PhoneNumberInput() {
                 .widthIn(max = 333.dp) // maximum width
                 .border(
                     width = 1.dp,
-                    color = Color(0xFF979797)
-                    // color = MaterialTheme.colorScheme.primaryContainer
+                    color = MaterialTheme.colorScheme.outline // Inner Border Color
                 ),
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
             textStyle = TextStyle(
                 fontSize = 20.sp,
                 fontWeight = FontWeight(600),
-                color = Color(0xFF000000),
-             //   color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.onPrimary,// Regular Black Color
                 textAlign = TextAlign.Center,
                 letterSpacing = 10.sp,
                 fontFamily = FontFamily(Font(R.font.inter_semi_bold))

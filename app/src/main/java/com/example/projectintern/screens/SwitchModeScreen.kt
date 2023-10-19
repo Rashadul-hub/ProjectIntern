@@ -1,6 +1,8 @@
 package com.example.projectintern.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,12 +21,13 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.projectintern.R
@@ -38,11 +41,17 @@ import com.example.projectintern.model.largeDimensions
 import com.example.projectintern.model.mediumDimensions
 import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.model.smallDimensions
+import com.example.projectintern.utils.LanguageSelection
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SwitchModeScreen(navController: NavController ) {
+fun SwitchModeScreen(
+    navController: NavController,
+    context: Context, // Add the context parameter
+    selectedLanguage: MutableState<LanguageSelection>,
+    onLanguageSelected: (LanguageSelection) -> Unit,
+) {
 
 
     val windowSize = rememberWindowSizeClass()
@@ -89,10 +98,11 @@ fun SwitchModeScreen(navController: NavController ) {
                     Box(
                         modifier = Modifier
                             .padding(values)
-                        // .background(color = OnPrimaryLight)
+                            .background(color = MaterialTheme.colorScheme.background) // White Background Color
                     ) {
                         // Body Section
                         ModeContents(dimensions)
+
                     }
                 }
             }
@@ -102,7 +112,7 @@ fun SwitchModeScreen(navController: NavController ) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(values)
-                // .background(color = OnPrimaryLight) // White Color
+                    .background(color = MaterialTheme.colorScheme.background) // White Background Color
             ) {
 
                 // Body Section
@@ -136,21 +146,19 @@ fun ModeContents(dimensions: Dimensions) {
         )
 
 
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(dimensions.smallMedium))
 
         ThemeSwitch()
 
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(dimensions.smallMedium))
 
-        LanguageSwitcherButton(stringResource(id = R.string.switch_language))
+        LanguageSwitcherButton(
+            text = stringResource(id = R.string.switch_language),
+        )
 
+
+        Spacer(modifier = Modifier.height(dimensions.large))
 
 
     }
-}
-
-@Preview
-@Composable
-fun LanguageView() {
-    LanguageSwitcherButton(text = "Switch")
 }

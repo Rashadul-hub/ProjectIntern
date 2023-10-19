@@ -25,6 +25,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -107,10 +108,10 @@ fun OtpScreen(navController: NavController) {
                     Box(
                         modifier = Modifier
                             .padding(values)
-                           // .background(color = OnPrimaryLight)
+                            .background(color = MaterialTheme.colorScheme.background) //White BackGround Landscape Mode
                     ) {
                         // Body Section
-                        OtpContents(dimensions,navController)
+                        OtpContents(dimensions, navController)
                     }
                 }
             }
@@ -120,20 +121,19 @@ fun OtpScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(values)
-                   // .background(color = OnPrimaryLight) // White Color
+                    .background(color = MaterialTheme.colorScheme.background) // White BackGround Color Portrait Mode
             ) {
 
                 // Body Section
-                OtpContents(dimensions,navController)
+                OtpContents(dimensions, navController)
             }
         }
     }
 }
 
 
-
 @Composable
-fun OtpContents(dimensions: Dimensions,navController: NavController) {
+fun OtpContents(dimensions: Dimensions, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -181,8 +181,9 @@ fun VerifySection() {
             .fillMaxWidth()
             .wrapContentHeight(),
         fontWeight = FontWeight(700),
-        color = Color(0xFF37474F),
+        color = MaterialTheme.colorScheme.secondary, // Heading Text Color
         fontFamily = FontFamily(Font(R.font.inter_bold))
+
     )
 }
 
@@ -196,7 +197,7 @@ fun SMSInformationSection() {
         modifier = Modifier
             .fillMaxWidth() //Take the full available width
             .wrapContentHeight(),// Wrap the content for height
-        color = Color(0xCC37474F),
+        color = MaterialTheme.colorScheme.scrim, // Hint Color
         fontWeight = FontWeight(600),
         fontFamily = FontFamily(Font(R.font.inter_semi_bold))
     )
@@ -218,11 +219,13 @@ fun InputOTPNumber() {
                 .width(175.dp)
                 .height(40.dp)
                 .padding(horizontal = 8.dp)
-                .background(Color.White) //White BackGround
-                .border(1.dp, Color.Black) //Black Border
+                .background(Color.Transparent) //White BackGround
+                .border(1.dp, color = MaterialTheme.colorScheme.onPrimary) //Black Border
         )
 
-        ResendButton( buttonText =  stringResource(id = R.string.resend_in_seconds), onClick = {})//Resend Button
+        ResendButton(
+            buttonText = stringResource(id = R.string.resend_in_seconds),
+            onClick = {})//Resend Button
     }
 }
 
@@ -245,14 +248,14 @@ fun ConfirmButton(navController: NavController) {
                     fontSize = 12.sp,
                     fontFamily = FontFamily(Font(R.font.inter_medium)),
                     fontWeight = FontWeight(500),
-                    color = Color(0xFF000000),
+                    color = MaterialTheme.colorScheme.onPrimary,
                     textAlign = TextAlign.Center,
                 )
             )
 
             Spacer(modifier = Modifier.height(8.dp)) // Add vertical spacing
 
-            CustomOTPButton(buttonText = stringResource(id = R.string.confirm)){
+            CustomOTPButton(buttonText = stringResource(id = R.string.confirm)) {
                 ///used FOr Demo Purpose
                 navController.navigate("mode")
             }
@@ -270,11 +273,16 @@ fun DummyText() {
 
 
     val text = buildAnnotatedString {
-        withStyle(style = SpanStyle(color = Color(0xCC37474F))) {
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.scrim)) {
             append("$waitAndPressString \n$contactSupportString")
         }
-        withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline, color = Color(0xCC37474F))) {
-            append(" ",emailString)
+        withStyle(
+            style = SpanStyle(
+                textDecoration = TextDecoration.Underline,
+                color = MaterialTheme.colorScheme.scrim
+            )
+        ) {
+            append(" ", emailString)
         }
     }
 

@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,8 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.projectintern.R
 import com.example.projectintern.darkMode
-import com.example.projectintern.ui.theme.CustomButtonColor
-import com.example.projectintern.ui.theme.OnPrimaryLight
 
 
 //SignInTitle
@@ -46,7 +44,7 @@ fun SignInTitle(text: String) {
             fontSize = 17.sp,
             fontFamily = FontFamily(Font(R.font.inter_bold)),
             fontWeight = FontWeight(700),
-            color = Color(0xFF37474F), //Color
+            color= MaterialTheme.colorScheme.secondary ,
             textAlign = TextAlign.Center,
         ),
         modifier = Modifier
@@ -63,7 +61,7 @@ fun TitleText(text: String) {
             fontSize = 17.sp,
             fontFamily = FontFamily(Font(R.font.inter_bold)),
             fontWeight = FontWeight(700),
-            color = Color(0xFF37474F), //Color
+            color = MaterialTheme.colorScheme.secondary,  // White Color
             textAlign = TextAlign.Center,
         ),
         modifier = Modifier
@@ -89,11 +87,11 @@ fun ResendButton(
             )
             .border(
                 1.dp,
-                Color(0xFF000000),
+                color = MaterialTheme.colorScheme.onPrimary, //Regular Black Color
                 RoundedCornerShape(5.dp)
             )
             .background(
-                Color(0xFFD9D9D9)
+                MaterialTheme.colorScheme.tertiary
             )
             .clickable { onClick() } // Make it clickable
     ) {
@@ -105,7 +103,7 @@ fun ResendButton(
                 .fillMaxWidth()
                 .height(12.dp)
                 .align(Alignment.Center),
-            color = Color(0xFF000000),
+            color = MaterialTheme.colorScheme.onPrimary, //Regular Black
             fontWeight = FontWeight(600),
             fontFamily = FontFamily(Font(R.font.inter_semi_bold))
         )
@@ -123,7 +121,7 @@ fun CustomOTPButton(
 ) {
     Button(
         onClick = onClick,
-        colors = ButtonDefaults.elevatedButtonColors(containerColor = Color.Transparent),
+//        colors = ButtonDefaults.elevatedButtonColors(containerColor = Color.Transparent),
         modifier = Modifier
             .width(307.dp) // Fixed width
             .height(55.dp)
@@ -136,7 +134,8 @@ fun CustomOTPButton(
                     bottomEnd = 16.dp
                 )
             )
-            .background(CustomButtonColor)
+
+            .background(MaterialTheme.colorScheme.primary)
             .padding(horizontal = 16.dp),
         contentPadding = PaddingValues(0.dp), // Remove default content padding
     ) {
@@ -145,7 +144,7 @@ fun CustomOTPButton(
             textAlign = TextAlign.Center,
             fontSize = 20.sp,
             letterSpacing = (-0.3).sp,
-            color = OnPrimaryLight,
+            color = Color.White, // Button Text Color
             fontWeight = FontWeight(600),
             fontFamily = FontFamily(Font(R.font.inter_semi_bold)),
             modifier = Modifier.align(Alignment.CenterVertically) // Align text vertically in the center
@@ -172,6 +171,8 @@ fun ThemeSwitch() {
 
     }
 }
+
+
 
 
 

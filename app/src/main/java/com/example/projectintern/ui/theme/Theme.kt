@@ -1,10 +1,9 @@
 package com.example.projectintern.ui.theme
 
+import android.annotation.SuppressLint
 import android.app.Activity
-
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -19,60 +18,62 @@ import com.example.projectintern.model.compactDimensions
 import com.example.projectintern.model.largeDimensions
 import com.example.projectintern.model.mediumDimensions
 import com.example.projectintern.model.smallDimensions
-import com.example.projectintern.utils.LanguageSelection
 import com.example.projectintern.utils.LocalAppDimens
 import com.example.projectintern.utils.LocalOrientationMode
 import com.example.projectintern.utils.Orientation
 import com.example.projectintern.utils.ProvideAppUtils
 
- val LightColorPalette = lightColorScheme(
-     primary = Color(0xFF000000),//Text Color
-     onPrimary = Color(0xFF00947F), //RegisterLink Text Color
-     primaryContainer = Color(0xFF979797), //Border Color
-    onPrimaryContainer = OnPrimaryContainerLight,
-    secondary = SecondaryLight,
-    onSecondary = OnSecondaryLight,
-    secondaryContainer = SecondaryContainerLight,
-    onSecondaryContainer = OnSecondaryContainerLight,
-    tertiary = TertiaryLight,
-    onTertiary = OnTertiaryLight,
-    tertiaryContainer = TertiaryContainerLight,
-    onTertiaryContainer = OnTertiaryContainerLight,
-    error = ErrorLight,
-    onError = OnErrorLight,
-    errorContainer = ErrorContainerLight,
-    onErrorContainer = OnErrorContainerLight,
-    background = BackgroundLight,
-    onBackground = OnBackgroundLight,
-    surface = SurfaceLight,
-    outline = OutlineLight,
-    surfaceVariant = SurfaceVariantLight,
-    onSurfaceVariant = OnSurfaceVariantLight,
+@SuppressLint("ConflictingOnColor")
+private val LightColorPalette = lightColorScheme(
+    primary = KothaGreen, // Green Apps Iconic Color
+
+
+    onPrimary = Black2,  // REGULAR BLACK
+    secondary = HeadingTextColor,// Heading Text Color
+    onSecondary = Color.Black,
+
+    error = RedErrorDark,
+
+    background = White,// BackGround Color
+    onBackground = Color.Black, // BackGround Color Text
+
+
+    surface = Color.White,//TopAppBar Color
+    onSurface = Black2,//TopAppBar Color Text
+
+
+    tertiary= ResendButtonColor,
+
+    outline = BoxBrder, //BoxBorder Color
+
+    scrim = HintColorLight //Hint Text Color
 )
-val DarkColorPalette = darkColorScheme(
-    primary = Color(0xFFFFFFFF),//Text Color
-    onPrimary = Color(0xFF00947F), //RegisterLink Text Color
-    primaryContainer = Color(0xFFB3B0B0), //Border Color
-    onPrimaryContainer = OnPrimaryContainerDark,
-    secondary = SecondaryDark,
-    onSecondary = OnSecondaryDark,
-    secondaryContainer = SecondaryContainerDark,
-    onSecondaryContainer = OnSecondaryContainerDark,
-    tertiary = TertiaryDark,
-    onTertiary = OnTertiaryDark,
-    tertiaryContainer = TertiaryContainerDark,
-    onTertiaryContainer = OnTertiaryContainerDark,
-    error = ErrorDark,
-    onError = OnErrorDark,
-    errorContainer = ErrorContainerDark,
-    onErrorContainer = OnErrorContainerDark,
-    background = BackgroundDark,
-    onBackground = OnBackgroundDark,
-    surface = SurfaceDark,
-    outline = OutlineDark,
-    surfaceVariant = SurfaceVariantDark,
-    onSurfaceVariant = OnSurfaceVariantDark,
-)
+private val DarkColorPalette = darkColorScheme(
+    primary = KothaGreen,  // Green Apps Iconic Color
+
+
+    onPrimary = Color.White,  // REGULAR WHITE
+    secondary = Color.White,// Heading Text Color
+    onSecondary = Color.White,
+
+    error = RedErrorLight,
+
+    background = Color.Black, // Black BackGround
+    onBackground = Color.White,
+
+    surface = Color.Black, //TopAppBar Color
+    onSurface = Color.White, //TopAppBar Color Text
+
+    outline = BoxBrder, //BoxBorder Color
+    scrim = HintColorDark, // Hint Text Color
+
+    tertiary= ResendButtonColorDark,
+
+
+
+    )
+
+
 @Composable
 fun ProjectInternTheme(
 
