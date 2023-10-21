@@ -90,6 +90,10 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager-indicators:0.23.1")
 
 
+    //for material icons-extended pack
+    implementation("androidx.compose.material:material-icons-extended:1.5.1")
+
+
 
 
 }
