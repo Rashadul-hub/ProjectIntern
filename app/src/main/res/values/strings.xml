@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjectIntern</string>
+    <string name="app_name" translatable="false">ProjectIntern</string>
 
     <string name="welcome_message">Welcome</string>
     <string name="hello">Hey There</string>
@@ -24,6 +24,18 @@
     <string name="contact_support">Contact Support </string>
     <string name="info_kotha_app_email"> info@kotha.app</string>
     <string name="switch_language">Switch Language</string>
+    <string name="error_phone_number_text">Please enter correct phone number</string>
+    <string name="terms_and_condition">Terms And Condition</string>
+    <string name="agree_and_continue">AGREE AND CONTINUE</string>
+
+
+    <string name="read_our"> Read our </string>
+    <string name="privacy_policy">Privacy Policy. </string>
+    <string name="term_of_service"> Terms of Service</string>
+    <string name="agree_continue"> Tap “Agree and continue” to accept the </string>
+
+
+
 
 
 </resources>

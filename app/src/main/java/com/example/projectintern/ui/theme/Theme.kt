@@ -32,7 +32,7 @@ private val LightColorPalette = lightColorScheme(
     secondary = HeadingTextColor,// Heading Text Color
     onSecondary = Color.Black,
 
-    error = RedErrorDark,
+    error = RedErrorLight,
 
     background = White,// BackGround Color
     onBackground = Color.Black, // BackGround Color Text
@@ -56,7 +56,7 @@ private val DarkColorPalette = darkColorScheme(
     secondary = Color.White,// Heading Text Color
     onSecondary = Color.White,
 
-    error = RedErrorLight,
+    error = RedErrorDark,
 
     background = Color.Black, // Black BackGround
     onBackground = Color.White,

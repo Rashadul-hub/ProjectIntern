@@ -14,6 +14,7 @@ import com.example.projectintern.model.rememberWindowSizeClass
 import com.example.projectintern.screens.LoginScreen
 import com.example.projectintern.screens.OtpScreen
 import com.example.projectintern.screens.SwitchModeScreen
+import com.example.projectintern.screens.TermsAndConditionScreen
 import com.example.projectintern.ui.theme.ProjectInternTheme
 
 /**This File Contains All The Screens**/
@@ -28,15 +29,19 @@ fun ProjectApp() {
 
         Surface(modifier = Modifier.fillMaxSize()) {
 
-            NavHost(navController = navController, startDestination = "login") {
+            NavHost(navController = navController, startDestination = "terms") {
                 composable("login") {
                     LoginScreen(navController = navController)
                 }
                 composable("otp") {
                     OtpScreen(navController = navController)
                 }
+
+                composable("terms") {
+                    TermsAndConditionScreen(navController = navController)
+                }
                 composable("mode") {
-                    SwitchModeScreen(navController = navController)
+                   SwitchModeScreen(navController = navController)
                 }
             }
 

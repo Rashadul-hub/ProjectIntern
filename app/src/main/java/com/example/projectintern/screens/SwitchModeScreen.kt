@@ -48,9 +48,7 @@ import com.example.projectintern.utils.LanguageSelection
 @Composable
 fun SwitchModeScreen(
     navController: NavController,
-    context: Context, // Add the context parameter
-    selectedLanguage: MutableState<LanguageSelection>,
-    onLanguageSelected: (LanguageSelection) -> Unit,
+
 ) {
 
 
@@ -137,7 +135,7 @@ fun ModeContents(dimensions: Dimensions) {
 
         // Logo Section
         Image(
-            painter = painterResource(id = R.drawable.kotha_app_logo),
+            painter = painterResource(id = R.drawable.kotha_app_logo_small),
             contentDescription = "app logo",
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)

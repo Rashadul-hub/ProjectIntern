@@ -23,11 +23,15 @@
     <string name="contact_support">সহায়ক যোগাযোগ করুন </string>
     <string name="info_kotha_app_email"> info@kotha.app</string>
     <string name="switch_language">ভাষা পরিবর্তন করুন</string>
+    <string name="error_phone_number_text">সঠিক ফোন নম্বর দিন</string>
+    <string name="terms_and_condition">শর্তাদি এবং শর্ত</string>
+    <string name="agree_and_continue">আমি সম্মত, এগিয়ে যান</string>
 
 
-
-
-
+    <string name="read_our">আমাদের </string>
+    <string name="privacy_policy">প্রাইভেসি পলিসি  </string>
+    <string name="agree_continue"> এবং টার্মস অফ সার্ভিসেস এ সম্মতি থাকলে নিচের আমি সম্মত,এগিয়ে যান বাটনে ক্লিক করে অগ্রসর হন </string>
+    <string name="term_of_service">  </string>
 
 
 </resources>

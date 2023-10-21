@@ -147,7 +147,7 @@ fun OtpContents(dimensions: Dimensions, navController: NavController) {
 
         // Logo Section
         Image(
-            painter = painterResource(id = R.drawable.kotha_app_logo),
+            painter = painterResource(id = R.drawable.kotha_app_logo_small),
             contentDescription = "app logo",
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
@@ -164,7 +164,7 @@ fun OtpContents(dimensions: Dimensions, navController: NavController) {
         Spacer(modifier = Modifier.height(dimensions.medium))
         ConfirmButton(navController)
         Spacer(modifier = Modifier.height(dimensions.mediumLarge))
-        DummyText()
+        ContactSupportText()
     }
 }
 
@@ -257,7 +257,7 @@ fun ConfirmButton(navController: NavController) {
 
             CustomOTPButton(buttonText = stringResource(id = R.string.confirm)) {
                 ///used FOr Demo Purpose
-                navController.navigate("mode")
+                navController.navigate("terms")
             }
         }
     }
@@ -265,7 +265,7 @@ fun ConfirmButton(navController: NavController) {
 
 
 @Composable
-fun DummyText() {
+fun ContactSupportText() {
 
     val waitAndPressString = stringResource(R.string.wait_and_press)
     val contactSupportString = stringResource(R.string.contact_support)

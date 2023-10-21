@@ -19,10 +19,9 @@ val Black2 = Color(0xFF000000)  // Regular Black
 val HintColorLight = Color(0xCC37474F)
 val HintColorDark = Color(0xE8A4A7A8)
 val ResendButtonColor = Color(0xFFD9D9D9)
+val RedErrorLight = Color(0xDCF34B48)
 val ResendButtonColorDark = Color(0xFFFF5A6D)
-
-val RedErrorDark = Color(0xFFB00020)
-val RedErrorLight = Color(0xFFEF5350)
+val RedErrorDark = Color(0xFFD50B30)
 
 
 // Light

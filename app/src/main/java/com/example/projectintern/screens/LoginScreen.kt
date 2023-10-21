@@ -7,6 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -153,12 +154,13 @@ fun LoginContent(dimensions: Dimensions, navController: NavController) {
 
         // Logo Section
         Image(
-            painter = painterResource(id = R.drawable.kotha_app_logo),
+            painter = painterResource(id = R.drawable.kotha_app_logo_small),
             contentDescription = "app logo",
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
                 .height(40.dp)
+
         )
 
         Spacer(modifier = Modifier.height(dimensions.smallMedium))
@@ -238,26 +240,35 @@ fun PhoneNumberInput() {
             .padding(horizontal = 16.dp) // Add horizontal padding
             .padding(vertical = 6.dp)
     ) {
-        OutlinedTextField(
-            value = phoneNumber,
-            onValueChange = { phoneNumber = it },
-            modifier = Modifier
-                .fillMaxWidth() // Take the full available width within the Box
-                .widthIn(max = 333.dp) // maximum width
-                .border(
-                    width = 1.dp,
-                    color = MaterialTheme.colorScheme.outline // Inner Border Color
-                ),
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
-            textStyle = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight(600),
-                color = MaterialTheme.colorScheme.onPrimary,// Regular Black Color
-                textAlign = TextAlign.Center,
-                letterSpacing = 10.sp,
-                fontFamily = FontFamily(Font(R.font.inter_semi_bold))
+        Column(modifier = Modifier.fillMaxWidth()) {
+            OutlinedTextField(
+                value = phoneNumber,
+                onValueChange = { phoneNumber = it },
+                modifier = Modifier
+                    .fillMaxWidth() // Take the full available width within the Box
+                    .widthIn(max = 333.dp) // maximum width
+                    .border(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.outline // Inner Border Color
+                    ),
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight(600),
+                    color = MaterialTheme.colorScheme.onPrimary,// Regular Black Color
+                    textAlign = TextAlign.Center,
+                    letterSpacing = 10.sp,
+                    fontFamily = FontFamily(Font(R.font.inter_semi_bold))
+                )
             )
-        )
+            // Display error message text when isError is true
+            Text(
+                text = stringResource(id = R.string.error_phone_number_text),
+                color = MaterialTheme.colorScheme.error,
+                fontSize = 14.sp,
+                modifier = Modifier.padding(start = 6.dp, top = 4.dp)
+            )
+        }
     }
 }
 
@@ -270,6 +281,7 @@ fun SendOTPButton(navController: NavController) {
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
+
         CustomOTPButton(buttonText = stringResource(id = R.string.send_otp)) {
             navController.navigate("otp") // Navigate to the OTP screen
         }

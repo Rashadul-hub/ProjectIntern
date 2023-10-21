@@ -44,7 +44,7 @@ fun SignInTitle(text: String) {
             fontSize = 17.sp,
             fontFamily = FontFamily(Font(R.font.inter_bold)),
             fontWeight = FontWeight(700),
-            color= MaterialTheme.colorScheme.secondary ,
+            color = MaterialTheme.colorScheme.secondary,
             textAlign = TextAlign.Center,
         ),
         modifier = Modifier
@@ -53,6 +53,7 @@ fun SignInTitle(text: String) {
 
     )
 }
+
 @Composable
 fun TitleText(text: String) {
     Text(
@@ -111,8 +112,6 @@ fun ResendButton(
 }
 
 
-
-
 ///Send OTP Button
 @Composable
 fun CustomOTPButton(
@@ -121,7 +120,6 @@ fun CustomOTPButton(
 ) {
     Button(
         onClick = onClick,
-//        colors = ButtonDefaults.elevatedButtonColors(containerColor = Color.Transparent),
         modifier = Modifier
             .width(307.dp) // Fixed width
             .height(55.dp)
@@ -176,9 +174,16 @@ fun ThemeSwitch() {
 
 
 
+
+
 @Preview
 @Composable
 fun ViewButton2() {
     CustomOTPButton(buttonText = "DEMO", onClick = {})
 }
 
+
+@Preview(showBackground = true)
+@Composable
+fun Button() {
+}
