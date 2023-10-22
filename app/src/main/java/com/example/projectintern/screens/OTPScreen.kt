@@ -48,7 +48,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.projectintern.R
-import com.example.projectintern.composed.CustomOTPButton
+import com.example.projectintern.composed.CustomButton
 import com.example.projectintern.composed.ResendButton
 import com.example.projectintern.composed.SignInTitle
 import com.example.projectintern.model.Dimensions
@@ -255,7 +255,7 @@ fun ConfirmButton(navController: NavController) {
 
             Spacer(modifier = Modifier.height(8.dp)) // Add vertical spacing
 
-            CustomOTPButton(buttonText = stringResource(id = R.string.confirm)) {
+            CustomButton(buttonText = stringResource(id = R.string.confirm)) {
                 ///used FOr Demo Purpose
                 navController.navigate("terms")
             }

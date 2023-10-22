@@ -7,7 +7,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -56,7 +55,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.projectintern.R
-import com.example.projectintern.composed.CustomOTPButton
+import com.example.projectintern.composed.CustomButton
 import com.example.projectintern.composed.SignInTitle
 import com.example.projectintern.model.Dimensions
 import com.example.projectintern.model.WindowSize
@@ -282,7 +281,7 @@ fun SendOTPButton(navController: NavController) {
         contentAlignment = Alignment.Center
     ) {
 
-        CustomOTPButton(buttonText = stringResource(id = R.string.send_otp)) {
+        CustomButton(buttonText = stringResource(id = R.string.send_otp)) {
             navController.navigate("otp") // Navigate to the OTP screen
         }
     }

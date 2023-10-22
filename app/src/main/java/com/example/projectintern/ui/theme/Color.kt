@@ -23,5 +23,7 @@ val RedErrorLight = Color(0xDCF34B48)
 val ResendButtonColorDark = Color(0xFFFF5A6D)
 val RedErrorDark = Color(0xFFD50B30)
 
+val ButtonAlert = Color(0xFF2B2D30)
+
 
 // Light

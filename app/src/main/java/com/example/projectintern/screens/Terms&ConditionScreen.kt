@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.projectintern.R
-import com.example.projectintern.composed.CustomOTPButton
+import com.example.projectintern.composed.CustomButton
 import com.example.projectintern.composed.SignInTitle
 import com.example.projectintern.model.Dimensions
 import com.example.projectintern.model.WindowSize
@@ -170,7 +170,7 @@ fun TermsAgreedButton(dimensions: Dimensions,navController: NavController) {
 
             Spacer(modifier = Modifier.height(dimensions.small))
 
-            CustomOTPButton(buttonText = stringResource(id = R.string.agree_and_continue)) {
+            CustomButton(buttonText = stringResource(id = R.string.agree_and_continue)) {
                 ///used FOr Demo Purpose
                 navController.navigate("mode")
             }
