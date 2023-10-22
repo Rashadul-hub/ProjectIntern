@@ -9,8 +9,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.projectintern.composed.AlertDialog
 import com.example.projectintern.darkMode
 import com.example.projectintern.model.rememberWindowSizeClass
+import com.example.projectintern.screens.LanguageSelectionScreen
 import com.example.projectintern.screens.LoginScreen
 import com.example.projectintern.screens.OtpScreen
 import com.example.projectintern.screens.SwitchModeScreen
@@ -29,16 +31,22 @@ fun ProjectApp() {
 
         Surface(modifier = Modifier.fillMaxSize()) {
 
-            NavHost(navController = navController, startDestination = "terms") {
+            NavHost(navController = navController, startDestination = "language") {
+
+                composable("language") {
+                LanguageSelectionScreen(navController = navController)
+            }
                 composable("login") {
                     LoginScreen(navController = navController)
                 }
                 composable("otp") {
                     OtpScreen(navController = navController)
                 }
-
                 composable("terms") {
                     TermsAndConditionScreen(navController = navController)
+                }
+                composable("dialog") {
+                    AlertDialog(navController = navController)
                 }
                 composable("mode") {
                    SwitchModeScreen(navController = navController)
