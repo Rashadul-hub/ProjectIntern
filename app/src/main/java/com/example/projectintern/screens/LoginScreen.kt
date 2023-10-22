@@ -90,7 +90,9 @@ fun LoginScreen(navController: NavController) {
                 elevation = dimensions.large,
             ) {
                 CenterAlignedTopAppBar(navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = {
+                        navController.navigate("language") //back to LanguageSelection Screen
+                    }) {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowLeft,
                             contentDescription = "Back Icon",
@@ -225,6 +227,67 @@ fun ExampleText() {
     )
 }
 
+/**
+@Composable
+fun PhoneNumberInput() {
+    var phoneNumber by remember { mutableStateOf(TextFieldValue()) }
+    var isError by remember { mutableStateOf(false) } // Track the error state
+
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .padding(vertical = 6.dp)
+    ) {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            OutlinedTextField(
+                value = phoneNumber,
+                onValueChange = {
+                    phoneNumber = it
+                    // Check for a valid phone number and set the error state accordingly
+                    isError = !isValidPhoneNumber(it.text)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .widthIn(max = 333.dp)
+                    .border(
+                        width = 1.dp,
+                        color = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                    ),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Done
+                ),
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight(600),
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    textAlign = TextAlign.Center,
+                    letterSpacing = 10.sp,
+                    fontFamily = FontFamily(Font(R.font.inter_semi_bold))
+                )
+            )
+
+            // Display error message text when isError is true
+            if (isError) {
+                Text(
+                    text = stringResource(id = R.string.error_phone_number_text),
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(start = 6.dp, top = 4.dp)
+                )
+            }
+        }
+    }
+}
+
+// Simple phone number validation function
+fun isValidPhoneNumber(phoneNumber: String): Boolean {
+    // For simplicity, we check if the phone number has exactly 10 digits
+    return phoneNumber.length == 11 && phoneNumber.all { it.isDigit() }
+}
+ */
 
 @Composable
 fun PhoneNumberInput() {
@@ -270,7 +333,6 @@ fun PhoneNumberInput() {
         }
     }
 }
-
 
 @Composable
 fun SendOTPButton(navController: NavController) {
