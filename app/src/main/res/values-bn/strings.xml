@@ -33,5 +33,16 @@
     <string name="agree_continue"> এবং টার্মস অফ সার্ভিসেস এ সম্মতি থাকলে নিচের আমি সম্মত,এগিয়ে যান বাটনে ক্লিক করে অগ্রসর হন </string>
     <string name="term_of_service">  </string>
 
+    <string name="select_your_language">আপনার ভাষা নির্বাচন করুন</string>
+    <string name="select_your_interface">অ্যাপের ইন্টারফেস জন্য আপনার পছন্দের ভাষা নির্বাচন করুন</string>
+
+    <string name="invalid_action">অবৈধ, আবার চেষ্টা করুন</string>
+
+    <string name="error">ভুল</string>
+
+
+
+
+
 
 </resources>

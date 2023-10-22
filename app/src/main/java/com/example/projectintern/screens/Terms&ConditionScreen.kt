@@ -141,14 +141,17 @@ fun PolicyContents(dimensions: Dimensions, navController: NavController) {
                 .fillMaxWidth()
                 .height(90.dp)
         )
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.weight(0.5f))
 
         Spacer(modifier = Modifier.height(dimensions.small))
 
         TermsAgreedButton(dimensions = dimensions, navController = navController)
+        Spacer(modifier = Modifier.weight(1f))
+
 
     }
 }
+
 
 @Composable
 fun TermsAgreedButton(dimensions: Dimensions,navController: NavController) {
@@ -172,7 +175,7 @@ fun TermsAgreedButton(dimensions: Dimensions,navController: NavController) {
 
             CustomButton(buttonText = stringResource(id = R.string.agree_and_continue)) {
                 ///used FOr Demo Purpose
-                navController.navigate("mode")
+                navController.navigate("dialog")
             }
 
 

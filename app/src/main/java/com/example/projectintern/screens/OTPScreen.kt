@@ -83,7 +83,7 @@ fun OtpScreen(navController: NavController) {
             ) {
                 CenterAlignedTopAppBar(navigationIcon = {
                     IconButton(onClick = {
-                        navController.navigate("login") //back to Login Screen
+                        navController.navigate("login") //Back to Login Screen
                     }) {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowLeft,
