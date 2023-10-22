@@ -114,7 +114,7 @@ fun ResendButton(
 
 ///Send OTP Button
 @Composable
-fun CustomOTPButton(
+fun CustomButton(
     buttonText: String,
     onClick: () -> Unit,
 ) {
@@ -179,7 +179,7 @@ fun ThemeSwitch() {
 @Preview
 @Composable
 fun ViewButton2() {
-    CustomOTPButton(buttonText = "DEMO", onClick = {})
+    CustomButton(buttonText = "DEMO", onClick = {})
 }
 
 
