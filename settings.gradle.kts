@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ProjectIntern"
 include(":app")
+include(":composemodule")

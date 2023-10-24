@@ -1,19 +1,16 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
-
 }
 
 android {
-    namespace = "com.example.projectintern"
-    compileSdk = 34
+    namespace = "com.example.composemodule"
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.projectintern"
-        minSdk = 24
-        //noinspection EditedTargetSdkVersion
-        targetSdk = 34
+        applicationId = "com.example.composemodule"
+        minSdk = 21
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -62,8 +59,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-text-android:1.5.3")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -71,6 +66,9 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+
+
 
     //New dependencies
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
@@ -91,6 +89,7 @@ dependencies {
 
     //for material icons-extended pack
     implementation("androidx.compose.material:material-icons-extended:1.5.1")
+
 
 
 
